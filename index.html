@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShootingStar | AI-Powered Digital Marketing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0C0C0C;
+            --primary-gold: #D4AF37;
+            --accent-blue: #00BFFF;
+            --text-light: #F5F5F7;
+            --text-gray: #A1A1A6;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+            opacity: 0.7;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(12, 12, 12, 0.8), rgba(12, 12, 12, 0.4), rgba(12, 12, 12, 0.8));
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .subtext {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 60px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            color: var(--bg-dark);
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        /* Service Categories */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-gold), var(--accent-blue));
+        }
+
+        .categories-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .categories-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-card {
+            min-width: 280px;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .category-thumbnail {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+        }
+
+        .category-content {
+            padding: 20px;
+            height: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            text-align: center;
+        }
+
+        /* Services Section */
+        .services-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            color: var(--bg-dark);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .service-pricing {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Showcase Section */
+        .showcase-container {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .showcase-track {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: scrollShowcase 30s linear infinite;
+        }
+
+        .showcase-slide {
+            width: 33.33%;
+            height: 100%;
+            position: relative;
+        }
+
+        .showcase-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showcase-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes scrollShowcase {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-66.66%); }
+        }
+
+        .showcase-container:hover .showcase-track {
+            animation-play-state: paused;
+        }
+
+        /* Why Section */
+        .why-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .why-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .pillars {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .pillar {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        .pillar-icon {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            flex-shrink: 0;
+        }
+
+        .pillar-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .infographic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .infographic-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary-gold) 0% 33%, var(--accent-blue) 33% 66%, #6a11cb 66% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: rotate 20s linear infinite;
+        }
+
+        .infographic-inner {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Testimonials */
+        .testimonials-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-card {
+            min-width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-weight: 600;
+        }
+
+        .testimonial-metrics {
+            color: var(--primary-gold);
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--glass-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--primary-gold);
+            transform: scale(1.2);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(0, 191, 255, 0.1));
+            z-index: -1;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-gold);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-gray);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gold);
+            color: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Sticky CTA Button */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 100px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--accent-blue));
+            color: var(--bg-dark);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sticky-cta.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .why-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 0 15px;
+            }
+            
+            .logo {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .services-filter {
+                gap: 10px;
+            }
+            
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+            
+            .cta-title {
+                font-size: 2.5rem;
+            }
+            
+            .sticky-cta {
+                right: 20px;
+                bottom: 20px;
+            }
+            
+            .back-to-top {
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-bg-video" autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-flowing-lights-3537-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="logo">ShootingStar</h1>
+            <p class="tagline">The System That Builds Systems</p>
+            <p class="subtext">AI-Powered Marketing. Real Results. Instant Scale.</p>
+            <div class="cta-buttons">
+                <a href="#services" class="btn btn-primary">Explore Services</a>
+                <a href="#" class="btn btn-secondary" id="nexgen-btn">Talk to Nexgen</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down" style="font-size: 1.5rem;"></i>
+        </div>
+    </section>
+
+    <!-- Service Categories -->
+    <section id="categories">
+        <div class="container">
+            <h2 class="section-title">Our Service Categories</h2>
+            <div class="categories-container">
+                <div class="category-card">
+                    <div class="category-thumbnail" style="background: linear-gradient(135deg, #6a11cb, #2575fc);"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Digital Marketing & Growth</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-thumbnail" style="background: linear-gradient(135deg, #ff9a9e, #fecfef);"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Branding & Design</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-thumbnail" style="background: linear-gradient(135deg, #a8ff78, #78ffd6);"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Ad Creation & Scriptwriting</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-thumbnail" style="background: linear-gradient(135deg, #fdbb2d, #22c1c3);"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Website Design & Development</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-thumbnail" style="background: linear-gradient(135deg, #8e2de2, #4a00e0);"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Video & Media Editing</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-thumbnail" style="background: linear-gradient(135deg, #f857a6, #ff5858);"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">30-Day Social Media Content</h3>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-thumbnail" style="background: linear-gradient(135deg, #36d1dc, #5b86e5);"></div>
+                    <div class="category-content">
+                        <h3 class="category-title">Business Strategy Systems</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Top-Tier Offers</h2>
+            <div class="services-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="design">Design</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+                <button class="filter-btn" data-filter="ai">AI</button>
+                <button class="filter-btn" data-filter="growth">Growth</button>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-category="growth">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="service-title">Social Growth Package</h3>
+                    <p class="service-description">Boost your social media presence with our data-driven growth strategies.</p>
+                    <div class="service-pricing">$299 - $999</div>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-primary btn-small">Buy Now</a>
+                        <a href="#" class="btn btn-secondary btn-small">Compare Tiers</a>
+                    </div>
+                </div>
+                <div class="service-card" data-category="marketing">
+                    <div class="service-icon">
+                        <i class="fas fa-ad"></i>
+                    </div>
+                    <h3 class="service-title">Professional Ad Campaigns</h3>
+                    <p class="service-description">High-converting ad campaigns tailored to your target audience.</p>
+                    <div class="service-pricing">$499 - $1,999</div>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-primary btn-small">Buy Now</a>
+                        <a href="#" class="btn btn-secondary btn-small">Compare Tiers</a>
+                    </div>
+                </div>
+                <div class="service-card" data-category="design">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 class="service-title">Website Development</h3>
+                    <p class="service-description">Custom websites designed to convert visitors into customers.</p>
+                    <div class="service-pricing">$999 - $4,999</div>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-primary btn-small">Buy Now</a>
+                        <a href="#" class="btn btn-secondary btn-small">Compare Tiers</a>
+                    </div>
+                </div>
+                <div class="service-card" data-category="design">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 class="service-title">Graphics & Branding Kit</h3>
+                    <p class="service-description">Complete branding package including logo, colors, and brand guidelines.</p>
+                    <div class="service-pricing">$399 - $1,499</div>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-primary btn-small">Buy Now</a>
+                        <a href="#" class="btn btn-secondary btn-small">Compare Tiers</a>
+                    </div>
+                </div>
+                <div class="service-card" data-category="ai">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="service-title">AI Content Creation</h3>
+                    <p class="service-description">AI-powered content generation for blogs, social media, and ads.</p>
+                    <div class="service-pricing">$199 - $799</div>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-primary btn-small">Buy Now</a>
+                        <a href="#" class="btn btn-secondary btn-small">Compare Tiers</a>
+                    </div>
+                </div>
+                <div class="service-card" data-category="growth">
+                    <div class="service-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3 class="service-title">SEO Optimization</h3>
+                    <p class="service-description">Improve your search engine rankings and drive organic traffic.</p>
+                    <div class="service-pricing">$599 - $2,499</div>
+                    <div class="service-actions">
+                        <a href="#" class="btn btn-primary btn-small">Buy Now</a>
+                        <a href="#" class="btn btn-secondary btn-small">Compare Tiers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section id="showcase">
+        <div class="container">
+            <h2 class="section-title">Our Work in Action</h2>
+            <div class="showcase-container">
+                <div class="showcase-track">
+                    <div class="showcase-slide">
+                        <div class="showcase-image" style="background: linear-gradient(135deg, #667eea, #764ba2);"></div>
+                        <div class="showcase-caption">
+                            <h3>Ad Campaign for Client X — +240% Growth</h3>
+                        </div>
+                    </div>
+                    <div class="showcase-slide">
+                        <div class="showcase-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);"></div>
+                        <div class="showcase-caption">
+                            <h3>Brand Launch — Complete Identity System</h3>
+                        </div>
+                    </div>
+                    <div class="showcase-slide">
+                        <div class="showcase-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);"></div>
+                        <div class="showcase-caption">
+                            <h3>E-commerce Website — 3x Conversion Rate</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section id="why">
+        <div class="container">
+            <div class="why-container">
+                <div class="why-content">
+                    <h2>Why ShootingStar Works</h2>
+                    <div class="pillars">
+                        <div class="pillar">
+                            <div class="pillar-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="pillar-content">
+                                <h3>AI Precision</h3>
+                                <p>Your strategy, guided by data-driven intelligence. We leverage cutting-edge AI to analyze market trends and consumer behavior.</p>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div class="pillar-content">
+                                <h3>Design Excellence</h3>
+                                <p>Every pixel engineered to convert. Our designs are not just beautiful—they're strategically crafted to drive results.</p>
+                            </div>
+                        </div>
+                        <div class="pillar">
+                            <div class="pillar-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <div class="pillar-content">
+                                <h3>Performance First</h3>
+                                <p>We don't guess. We measure. We dominate. Every campaign is optimized based on real-time performance data.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="infographic">
+                    <div class="infographic-circle">
+                        <div class="infographic-inner">
+                            AI + Design + Performance = Results
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Success Stories</h2>
+            <div class="testimonials-container">
+                <div class="testimonials-track">
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">"ShootingStar transformed our online presence. Our engagement increased by 130% in just two months, and we're seeing real ROI from our marketing spend."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div>
+                                <h4>John Doe</h4>
+                                <p class="testimonial-metrics">+130% engagement</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">"The AI-powered ad campaigns developed by ShootingStar delivered a 240% increase in conversions. Their data-driven approach is a game-changer."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SJ</div>
+                            <div>
+                                <h4>Sarah Johnson</h4>
+                                <p class="testimonial-metrics">+240% conversions</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-content">"From branding to website development, ShootingStar delivered a complete ecosystem that has positioned us as leaders in our industry."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MR</div>
+                            <div>
+                                <h4>Michael Roberts</h4>
+                                <p class="testimonial-metrics">3x website traffic</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-nav">
+                    <div class="nav-dot active" data-slide="0"></div>
+                    <div class="nav-dot" data-slide="1"></div>
+                    <div class="nav-dot" data-slide="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg"></div>
+        <div class="container">
+            <h2 class="cta-title">Ready to Scale?</h2>
+            <p class="cta-subtitle">Your AI partner is waiting. Let's transform your digital presence with data-driven strategies and stunning design.</p>
+            <a href="#" class="btn btn-primary" id="final-cta">Talk to Nexgen Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ShootingStar</h3>
+                    <p>The System That Builds Systems. AI-Powered Marketing for the modern business.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Digital Marketing</a></li>
+                        <li><a href="#">Branding & Design</a></li>
+                        <li><a href="#">Ad Creation</a></li>
+                        <li><a href="#">Web Development</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Partners</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Agency Program</a></li>
+                        <li><a href="#">Referral Program</a></li>
+                        <li><a href="#">Become a Partner</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 ShootingStar — Built by Nexgen Intelligence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <!-- Sticky CTA Button -->
+    <div class="sticky-cta" id="stickyCta">
+        <i class="fas fa-robot"></i> Talk to Nexgen
+    </div>
+
+    <script>
+        // Service Filtering
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    serviceCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Testimonial Carousel
+            const track = document.querySelector('.testimonials-track');
+            const dots = document.querySelectorAll('.nav-dot');
+            let currentSlide = 0;
+            
+            function goToSlide(slideIndex) {
+                track.style.transform = `translateX(-${slideIndex * 100}%)`;
+                currentSlide = slideIndex;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === slideIndex);
+                });
+            }
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    goToSlide(slideIndex);
+                });
+            });
+            
+            // Auto-advance testimonials
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % dots.length;
+                goToSlide(currentSlide);
+            }, 5000);
+            
+            // Back to Top Button
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Sticky CTA Button
+            const stickyCta = document.getElementById('stickyCta');
+            
+            window.addEventListener('scroll', () => {
+                const scrollPercentage = (window.pageYOffset / (document.body.scrollHeight - window.innerHeight)) * 100;
+                
+                if (scrollPercentage > 70) {
+                    stickyCta.classList.add('visible');
+                } else {
+                    stickyCta.classList.remove('visible');
+                }
+            });
+            
+            // Nexgen Button Handler
+            const nexgenButtons = document.querySelectorAll('#nexgen-btn, #final-cta, #stickyCta');
+            
+            nexgenButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert("Nexgen AI Assistant is coming soon! This feature will allow you to chat with our AI to get personalized recommendations for your business.");
+                });
+            });
+            
+            // Auto-scroll for categories
+            const categoriesContainer = document.querySelector('.categories-container');
+            let scrollPosition = 0;
+            let scrollDirection = 1; // 1 for right, -1 for left
+            
+            function autoScrollCategories() {
+                if (categoriesContainer) {
+                    scrollPosition += scrollDirection * 1;
+                    
+                    // Check if we've reached the end
+                    if (scrollPosition >= categoriesContainer.scrollWidth - categoriesContainer.clientWidth) {
+                        scrollDirection = -1;
+                    } else if (scrollPosition <= 0) {
+                        scrollDirection = 1;
+                    }
+                    
+                    categoriesContainer.scrollLeft = scrollPosition;
+                }
+            }
+            
+            // Pause auto-scroll on hover
+            if (categoriesContainer) {
+                categoriesContainer.addEventListener('mouseenter', () => {
+                    clearInterval(autoScrollInterval);
+                });
+                
+                categoriesContainer.addEventListener('mouseleave', () => {
+                    autoScrollInterval = setInterval(autoScrollCategories, 30);
+                });
+            }
+            
+            let autoScrollInterval = setInterval(autoScrollCategories, 30);
+        });
+    </script>
+</body>
+  </html>
